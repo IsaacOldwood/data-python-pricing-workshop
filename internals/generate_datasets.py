@@ -157,33 +157,27 @@ def generate_datasets() -> tuple[pd.DataFrame, pd.DataFrame]:
 
     for _, policy in shuffled_df.iterrows():
         # Frequency model
-        claim_rate = 0.05
+        risk_score = (
+            (policy["annual_mileage"] / 7000) * 0.3
+            + (policy["vehicle_age"] / 10) * 0.2
+            + (policy["vehicle_value_at_new"] / 50000) * 0.1
+        )
 
-        # Mileage effect
-        claim_rate += policy["annual_mileage"] / 100000
+        claim_rate = 0.05 + risk_score
 
-        # Vehicle age effect
-        claim_rate += policy["vehicle_age"] * 0.01
-
-        # Cap frequency
-        claim_rate = min(claim_rate, 1.5)
-
-        # Number of claims this year
         claim_count = rng.poisson(claim_rate)
 
-        for claim_num in range(claim_count):
-            # Severity factor by vehicle value
-            severity_mean = policy["vehicle_value_at_new"] * 0.08
+        for _ in range(claim_count):
+            severity_mean = policy["vehicle_value_at_new"] * 0.01
 
             claim_amount = rng.lognormal(
                 mean=np.log(max(severity_mean, 100)),
-                sigma=0.8,
+                sigma=0.4,
             )
 
-            # Cap very large claims
             claim_amount = min(
                 claim_amount,
-                policy["vehicle_value_at_new"] * 1.2,
+                policy["vehicle_value_at_new"] * 0.9,
             )
 
             claims_records.append(
