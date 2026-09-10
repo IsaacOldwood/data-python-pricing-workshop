@@ -54,53 +54,6 @@ Useful for:
 
 ---
 
-### Vehicle Weight
-
-Examples:
-
-- Small hatchback
-- Family saloon
-- SUV
-- Van
-
-Can influence both:
-
-- Claim frequency
-- Claim severity
-
----
-
-### Vehicle Power
-
-Examples:
-
-- Horsepower
-- Engine size
-- 0-60 acceleration time
-
-Simple narrative:
-
-> Higher-performance vehicles may be driven more aggressively and can cost more to repair.
-
----
-
-### Vehicle Category
-
-Simplified categories:
-
-- Economy
-- Standard
-- Premium
-- Luxury
-
-Useful for introducing:
-
-- Categorical variables
-- Grouping and aggregation
-- Comparing risk segments
-
----
-
 ### Previous Claims
 
 One of the strongest and most intuitive predictors.
@@ -112,18 +65,6 @@ Example bands:
 - 2+ previous claims
 
 Participants can easily understand why previous claims history may indicate future risk.
-
----
-
-### Years Since Last Claim
-
-Examples:
-
-- 0 years
-- 1 year
-- 2+ years
-
-Another intuitive measure of risk.
 
 ---
 
